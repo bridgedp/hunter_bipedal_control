@@ -14,7 +14,7 @@ model_settings
 
   verboseCppAd                  false
   recompileLibrariesCppAd       false
-  modelFolderCppAd              /home/bridge/Desktop/legged_control/hunter
+  modelFolderCppAd              /tmp/bridge/legged_control/hunter
 }
 
 
