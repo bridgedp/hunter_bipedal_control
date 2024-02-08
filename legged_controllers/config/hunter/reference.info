@@ -1,0 +1,45 @@
+targetDisplacementVelocity          0.5;
+targetRotationVelocity              1.57;
+
+
+comHeight                           0.63
+
+defaultJointState
+{
+   (0,0)   0.10   ; leg_l1_joint
+   (1,0)   0.00   ; leg_l2_joint
+   (2,0)   0.40   ; leg_l3_joint
+   (3,0)   0.93   ; leg_l4_joint
+   (4,0)   0.53   ; leg_l5_joint
+   (5,0)  -0.10   ; leg_r1_joint
+   (6,0)   0.00   ; leg_r2_joint
+   (7,0)  -0.40   ; leg_r3_joint
+   (8,0)   0.93   ; leg_r4_joint
+   (9,0)  -0.53   ; leg_r5_joint
+}
+
+initialModeSchedule
+{
+  modeSequence
+  {
+    [0]  STANCE
+    [1]  STANCE
+  }
+  eventTimes
+  {
+    [0]  0.5
+  }
+}
+
+defaultModeSequenceTemplate
+{
+  modeSequence
+  {
+    [0]  STANCE
+  }
+  switchingTimes
+  {
+    [0]  0.0
+    [1]  1.0
+  }
+}

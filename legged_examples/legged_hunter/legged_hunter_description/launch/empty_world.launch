@@ -1,0 +1,16 @@
+<launch>
+    <param name="legged_robot_description" textfile="$(find legged_hunter_description)/urdf/hunter.urdf"/>
+    <param name="legged_robot_description_sim" textfile="$(find legged_hunter_description)/urdf/hunter_sim.urdf"/>
+
+    <rosparam file="$(find legged_gazebo)/config/default.yaml" command="load"/>
+    <include file="$(find legged_gazebo)/launch/empty_world.launch">
+        <arg name="world_name" value="$(find legged_gazebo)/worlds/empty_world.world"/>
+    </include>
+
+    <!-- push robot_description to factory and spawn robot in gazebo -->
+    <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" clear_params="true" 
+        args="-z 0.64 -param legged_robot_description_sim -urdf -model hunter " output="screen"/>
+
+
+</launch>
+

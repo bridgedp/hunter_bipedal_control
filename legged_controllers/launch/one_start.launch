@@ -1,0 +1,32 @@
+<?xml version="1.0" ?>
+
+<launch>
+    <arg name="robot_type" default="hunter" doc="Robot type: [hunter]"/>
+    <arg name="cheater" default="false"/>
+
+    <include file="$(find legged_controllers)/launch/joy_teleop.launch"/>
+
+    <!-- make the files into global parameters -->
+    <param name="urdfFile" value="$(find legged_hunter_description)/urdf/$(arg robot_type).urdf"/>
+    <param name="taskFile" value="$(find legged_controllers)/config/$(arg robot_type)/task.info"/>
+    <param name="referenceFile" value="$(find legged_controllers)/config/$(arg robot_type)/reference.info"/>
+    <param name="gaitCommandFile" value="$(find legged_controllers)/config/$(arg robot_type)/gait.info"/>
+    <param name="trajDataFile" value="$(find legged_controllers)/data/q_qd_q2d.csv"/>
+    <param name="collectDataDir" value="$(find legged_controllers)/data/"/>
+
+    <rosparam file="$(find legged_controllers)/config/controllers.yaml" command="load"/>
+
+    <node if="$(arg cheater)" name="controller_loader" pkg="controller_manager" type="spawner"
+          output="screen" args="
+          controllers/legged_controller
+          controllers/legged_cheater_controller"/>
+
+    <node unless="$(arg cheater)" name="controller_loader" pkg="controller_manager" type="spawner"
+          output="screen" args="
+          controllers/legged_controller"/>
+
+    <node pkg="legged_controllers" type="legged_target_trajectories_publisher" name="legged_robot_target"
+          output="screen"/>
+          
+
+</launch>

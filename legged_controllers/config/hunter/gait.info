@@ -1,0 +1,73 @@
+list
+{
+  [0] stance
+  [1] trot
+  [2] standing_trot
+  [3] flying_trot
+}
+
+stance
+ {
+   modeSequence
+   {
+     [0]     STANCE
+   }
+   switchingTimes
+   {
+     [0]     0.0
+     [1]     0.5
+   }
+}
+
+trot
+ {
+   modeSequence
+   {
+     [0]     L
+     [1]     R
+   }
+   switchingTimes
+   {
+     [0]     0.0
+     [1]     0.3
+     [2]     0.6
+   }
+}
+
+standing_trot
+{
+  modeSequence
+  {
+    [0]     L
+    [1]     STANCE
+    [2]     R
+    [3]     STANCE
+  }
+  switchingTimes
+  {
+    [0]     0.00
+    [1]     0.25
+    [2]     0.3
+    [3]     0.55
+    [4]     0.6
+  }
+}
+
+flying_trot
+{
+  modeSequence
+  {
+    [0]     L
+    [1]     FLY
+    [2]     R
+    [3]     FLY
+  }
+  switchingTimes
+  {
+    [0]     0.00
+    [1]     0.15
+    [2]     0.2
+    [3]     0.35
+    [4]     0.4
+  }
+}

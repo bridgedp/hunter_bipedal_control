@@ -1,0 +1,20 @@
+<?xml version="1.0" ?>
+
+<launch>
+    <arg name="robot_type" default="hunter" doc="Robot type: [hunter]"/>
+    <arg name="rviz" default="true"/>
+    <arg name="record_data" default="false"/>
+
+    <include file="$(find legged_bridge_hw)/launch/legged_bridge_hw.launch"/>
+
+    <node pkg="legged_controllers" type="timedelay_launch.sh" name="timedelay_launch" args="2 legged_controllers one_start.launch" output="screen"/>
+
+    <node if="$(arg rviz)" name="rviz" pkg="rviz" type="rviz" args="-d $(find legged_controllers)/rviz/legged_robot.rviz" required="true" />
+
+    <group if="$(arg record_data)">
+        <include file="$(find legged_controllers)/launch/record_data.launch"/>
+    </group>
+
+    <node name="rqt_reconfigure" pkg="rqt_reconfigure" type="rqt_reconfigure" output="screen"></node>
+
+</launch>

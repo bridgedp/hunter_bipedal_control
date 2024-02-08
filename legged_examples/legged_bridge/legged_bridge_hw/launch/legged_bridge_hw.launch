@@ -1,0 +1,21 @@
+<launch>
+    <arg name="robot_type" default="hunter" doc="Robot type: [yks]"/>
+    
+    <param name="legged_robot_description" command="$(find xacro)/xacro $(find legged_hunter_description)/urdf/hunter.urdf
+        robot_type:=$(arg robot_type) "/>
+
+    <node name="generate_urdf" pkg="legged_common" type="generate_urdf.sh" output="screen"
+        args="$(find legged_hunter_description)/urdf/hunter.urdf $(arg robot_type)"/>
+
+    <rosparam file="$(find legged_bridge_hw)/config/$(arg robot_type).yaml" command="load"/>
+
+    <param name="robot_type" value="$(arg robot_type)"/>
+
+    <node name="legged_bridge_hw" pkg="legged_bridge_hw" type="legged_bridge_hw" respawn="false" clear_params="true" output="screen"/>
+    
+    <node pkg="yesense_imu" type="yesense_imu_node" name="yesense_imu_node" output="screen" respawn="true" respawn_delay="0.002" >
+        <param name="yesense_port"      type="string" value="/dev/ttyUSB0"/>
+        <param name="yesense_baudrate"  type="int"    value="460800"/>
+    </node>
+
+</launch>

@@ -1,0 +1,11 @@
+# The Console scripts support comments. A comment
+# is a line that starts with a '#' character.
+# If the character is later in a line it is NOT treated as a comment.
+
+calc 1 + 3
+calc 4.6 * 1.5
+info
+
+# A script can also call other scripts!
+
+# run otherscript 
