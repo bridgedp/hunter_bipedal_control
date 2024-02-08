@@ -48,7 +48,7 @@ at www.bridgedp.com.
 #include "ros/ros.h"
 
 #include <dynamic_reconfigure/server.h>
-#include "legged_interface/SwingTrajectoryPlannerConfig.h"
+// #include "legged_interface/SwingTrajectoryPlannerConfig.h"
 
 namespace ocs2
 {
@@ -214,7 +214,7 @@ private:
 
   feet_array_t<vector3_t> latestStanceposition_;
 
-  std::unique_ptr<dynamic_reconfigure::Server<legged_interface::SwingTrajectoryPlannerConfig>> serverPtr_;
+  // std::unique_ptr<dynamic_reconfigure::Server<legged_interface::SwingTrajectoryPlannerConfig>> serverPtr_;
   feet_array_t<std::vector<bool>> eesContactFlagStocks_;
 };
 
