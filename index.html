@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-F28Q22D1LS"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-F28Q22D1LS');
+  </script>
+  <meta charset="utf-8">
+  <meta name="description" content="An open source bipedal robot control framework, based on non-linear MPC and WBC, tailered for EC-hunter80-v01 bipedal robot">
+  <meta name="keywords" content="Hunter Bipedal, NMPC, WBC">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>hunter_bipedal_control</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+  <script src="https://www.youtube.com/iframe_api"></script>
+  <script src="./static/js/ajax.googleapis.com_ajax_libs_jquery_3.5.1_jquery.min.js"></script>
+  <script src="./static/js/isInViewport.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+
+  <link rel="icon" href="./favicon.ico?">
+  
+  <script src="https://kit.fontawesome.com/006a5775d5.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    </div>
+    <div class="navbar-menu">
+      <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+        <a class="navbar-item" href="https://zma69650.github.io">
+        <span class="icon">
+            <i class="fas fa-home"></i>
+        </span>
+        </a>
+  
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link">
+            related information
+          </a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="https://www.bridgedp.com/">
+              Bridgedp Robotics
+            </a>
+            <!-- <a class="navbar-item" href="https://robot-skills.github.io">
+              Legs as Manipulator
+            </a>
+            <a class="navbar-item" href="https://ashish-kmr.github.io/rma-legged-robots/">
+              Rapid Motor Adaptation
+            </a> -->
+            <!--<a class="navbar-item" href="https://yandongji.github.io/soccer-dribbling/">
+              Soccer-Dribbling
+            </a>
+            <a class="navbar-item" href="https://xbpeng.github.io/projects/A1SoccerShooting/index.html">
+              Soccer-Shooting
+            </a> -->
+          </div>
+        </div>
+      </div>
+  
+    </div>
+  </nav>
+
+
+  
+<section class="hero">
+  <div class="hero-body">
+    <div class="container">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">An open source bipedal robot control framework, based on non-linear MPC and WBC, tailered for EC-hunter80-v01 bipedal robot</h1>
+          <div class="is-size-4 publication-authors">
+            <span class="author-block">
+              <!-- <a href="https://www.bridgedp.com/">通用机器人终将为人类文明带来巨变*</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
+              <!-- <a href="https://tenhearts.github.io">Kexin Shi*</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <a href="https://anag.me">Ananye Agarwal</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <a href="https://www.cs.cmu.edu/~dpathak/">Deepak Pathak</a> -->
+              <!-- <br><br> -->
+              <img src="./resources/bridge/Bridgedp.jpg" width="60%"></img>
+              <!-- <span class="brmod">CoRL 2023 Generalist / Roboletics / Deployable Workshop (Oral)</span> -->
+            </span>
+          </div>
+          
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <!-- <span class="link-block">
+                <a href="./resources/parkour.pdf"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span> -->
+              <!-- arXiv Link. -->
+              <!-- <span class="link-block">
+                <a href="https://arxiv.org/abs/2309.14341"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span> -->
+              
+              <!-- Video Link. -->
+              <!-- <span class="link-block">
+                <a href="https://youtu.be/cuboZYHGiMc?si=iQJRkeV9XRb5--46"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>Result Video</span>
+                </a>
+              </span> -->
+
+              <!-- Bilibili Link. -->
+              <span class="link-block">
+                <a href="https://www.bilibili.com/video/BV1Sb4y1A76n/?spm_id_from=333.999.0.0&vd_source=df040bfd63d1c639df2a0ded8f901885"
+                    class="external-link button is-normal is-rounded is-dark" target="_blank">
+                    <span class="icon">
+                      <i class="fab fa-bilibili"></i>
+                    </span>
+                    <span>Bilibili</span>
+                </a>
+              </span>
+              
+              <!-- Poster Link. -->
+              <!-- <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <i class="far fa-file"></i>
+                  </span>
+                  <span>Poster</span>
+                </a>
+              </span> -->
+
+
+              <!-- twitter Link. -->
+              <!-- <span class="link-block">
+                <a href="https://twitter.com/pathak2206/status/1706696237703901439?ref_src=twsrc%5Etfw%7Ctwcamp%5Etweetembed%7Ctwterm%5E1706696237703901439%7Ctwgr%5E15e02108dbb696247a490e6499f2b18191e73a85%7Ctwcon%5Es1_c10&ref_url=https%3A%2F%2Fpublish.twitter.com%2F%3Fquery%3Dhttps3A2F2Ftwitter.com2Fpathak22062Fstatus2F1706696237703901439widget%3DTweet"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-twitter"></i>
+                  </span>
+                  <span>Summary</span>
+                </a>
+              </span> -->
+
+              <!-- code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/bridgedp/hunter_bipedal_control" class="external-link button is-normal is-rounded is-dark" target="_blank">
+                  <span class="icon">
+                    <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                </a>
+              </span>
+
+              <!-- demo Link. -->
+              <!-- <span class="link-block">
+                <a href="#demo"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <i class="fa-solid fa-tower-broadcast"></i>
+                  </span>
+                  <span>Live Demo CoRL 2023</span>
+                </a>
+              </span> -->
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Paper video. -->
+<!-- 
+<section class="section" style="padding-bottom: 0">
+  <div class="container">
+    <div id="method_video" class="columns is-centered has-text-centered">
+      <div class="column is-two-thirds no-bottom-padding">
+          <iframe height="500" src="https://www.youtube.com/embed/cqvAgcQl6s4?si=nq11xoiusFjK3yVJ" title="YouTube video player" frameborder="0" style="border: 1px solid #bbb; border-radius: 10px; width: 100%;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
+</section> -->
+<!-- <section class="hero teaser">
+  <div class="hero-body">
+    <div class="columns is-centered">
+      <div class="column is-9">
+        <div class="is-centered">
+          <video autoplay muted loop playsinline poster="./resources/loading-icon.gif" style="width: 28%; border: 1px solid #bbb; border-radius: 10px; margin: 2.0%;">
+            <source src="./resources/Robustness/Robustness-1-comp.mp4" type="video/mp4">
+          </video>
+          <video autoplay muted loop playsinline poster="./resources/loading-icon.gif" style="width: 28%; border: 1px solid #bbb; border-radius: 10px; margin: 2.0%;">
+            <source src="./resources/Gap/gap0.8.mp4" type="video/mp4">
+          </video>
+          <video autoplay muted loop playsinline poster="./resources/loading-icon.gif" style="width: 28%; border: 1px solid #bbb; border-radius: 10px; margin: 2.0%;">
+            <source src="./resources/FullParkour_FixedCam.mov" type="video/mp4">
+          </video>
+          <h2 class="subtitle has-text-centered">
+            <strong>Quadrupedal robot expands its capabilities by synthesizing agile locomotion and legged manipulation skills.</strong>
+          </h2> -->
+      <!-- </div>
+      </div>
+    </div>
+  </div>
+</section> -->
+
+<!-- Hardware components. -->
+<section class="section">
+
+  <div class="container">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-two-thirds">
+        <h2 class="title is-2">Hardware components</h2>
+        <!-- 1 -->
+        <div class="content has-text-justified">
+          <p>         
+              The open-source humanoid robot product EC-Hunter80-V01 features a unique leg design, without an upper body and arms. Unnecessary external components of the robot's appearance have been removed, retaining only the essential structural elements to achieve maximum lightweight design. This is similar to the approach taken by the foreign company Agility Robotics, where the lower body of their humanoid robot prototype Cassie adopts the classic "ostrich legs," showcasing a minimalist engineering and mechanical design.In terms of hardware specifications, EC-Hunter80-V01 stands at a height of 785.97mm, with a front-back width of 178mm and a left-right width of 330.4mm. The overall structure has 10 degrees of freedom, and the robot weighs approximately 12kg. It is equipped with a 5300mAh lithium battery, along with two power interfaces: 5V10A and 19V12.5A. The openness and compatibility of the control system and electric drive components are commendable.
+          </p>
+        </div>
+        <div class="is-centered">
+          <center>
+          <!-- <video autoplay muted loop playsinline controls poster="./resources/loading-icon.gif" style="width: 95%; border: 1px solid #bbb; border-radius: 10px; margin: 2.0%;">
+            <source src="./resources/Full/Full-fixed.mp4" type="video/mp4">
+          </video> -->
+            <img src="./resources/bridge/hardware1.png" width="60%"></img>
+          </center>
+      </div>
+      <!-- 2 -->
+      <div class="content has-text-justified">
+        <p>         
+          On the control module, EC-Hunter80-V01 utilizes the NUCWSKI7 control platform and EtherCAT control interface. The EtherCAT interface employs Inovance's independently developed high-speed EtherCAT to CAN module. A single module with six motors can achieve a maximum communication frame rate of 1kHz, while a module with two motors can achieve a maximum communication frame rate of 2kHz. The use of EtherCAT to CAN modules facilitates the convenient connection between the Linux system and the joint motors. CAN communication boasts high reliability, strong anti-interference capabilities, low cost, and a small interface size. EtherCAT, on the other hand, uses RJ45 ports with a larger physical size but allows for the transmission of a large amount of data at once, making it suitable for connection with systems like Linux. Therefore, using EtherCAT to CAN for the connection between joint modules and the control platform in a legged robot is a good choice.Additionally, it's worth noting that the robot's Inertial Measurement Unit (IMU) also employs a module using Inovance's EtherCAT bus, operating on the same bus as the motor control. This not only simplifies the overall hardware architecture but also ensures real-time communication.
+        </p>
+      </div>
+      <div class="is-centered">
+        <center>
+          <img src="./resources/bridge/hardware2.png" width="60%"></img>
+        </center>
+      </div>
+      <!-- 3 -->
+      <div class="content has-text-justified">
+        <p>         
+          The EC-Hunter80-V01 main body is extremely lightweight, weighing just over ten kilograms, yet it can carry a payload of up to 15kg. Users have the flexibility to modify and enhance the robot's structure on the hardware level, such as adding dual arms or even quadruple arms, as well as integrating visual systems and other improvements. The lightweight design of EC-Hunter80-V01 is attributed to Inovance Intelligent Technology's two highly competitive lightweight products, the EC-A8112-P1-18 and EC-A4310-P2-36. The combination of these two in-house developed joint products not only simplifies the design structure of humanoid robots, reducing maintenance complexity and minimizing wiring, but also eliminates the time-consuming process of integrating different products. The overall stability of the software and hardware is noticeably enhanced.In terms of performance, both products achieve a peak torque density of over 100Nm/kg, providing robust power for the motion of bipedal humanoid robots.
+        </p>
+      </div>
+      <div class="is-centered">
+        <center>
+          <img src="./resources/bridge/motor1.png" width="60%"></img>
+        </center>
+      </div>
+
+      </div>   
+    </div>
+  </div>
+  
+</section>
+
+
+
+<!-- control components. -->
+<section class="section">
+
+  <div class="container">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-two-thirds">
+        <h2 class="title is-2">Control components</h2>
+        <!-- 1 -->
+        <div class="content has-text-justified">
+          <p>         
+              The motion control algorithm for the open-source EC-Hunter80-V01 robot adopts a Model-based control approach, utilizing the MPC (Model Predictive Control) + WBC (Whole-Body Control) algorithm framework. This algorithm integrates modules such as localization perception, gait planning, and ground reaction force calculation to achieve torque-mixed control for legged robots. The control algorithm is provided by Bridgedp Robotics, a startup company formed by members from domestic and international universities, including Southern University of Science and Technology, Beihang University, Huazhong University of Science and Technology, and Tsinghua University. The company is dedicated to developing motion control technology and modular products for humanoid and quadruped robots.Within six months of its establishment, the team demonstrated remarkable research and development capabilities, achieving a breakthrough in stabilizing the walking control of bipedal humanoid robots from scratch within one month. The team plans to continue investing in cutting-edge areas such as robot reinforcement learning, imitation learning, and the development of the humanoid robot motion "cerebellum" module.
+          </p>
+        </div>
+        <div class="is-centered">
+          <center>
+          <!-- <video autoplay muted loop playsinline controls poster="./resources/loading-icon.gif" style="width: 95%; border: 1px solid #bbb; border-radius: 10px; margin: 2.0%;">
+            <source src="./resources/Full/Full-fixed.mp4" type="video/mp4">
+          </video> -->
+            <img src="./resources/bridge/software1.jpeg" width="60%"></img>
+          </center>
+      </div>
+     
+
+      </div>   
+    </div>
+  </div>
+  
+</section>
+
+
+
+<!-- 
+<section class="hero teaser">
+  <div class="hero-body">
+    <div class="columns is-centered">
+      <div class="column is-9">
+        <div class="is-centered">
+          <center>
+          <video autoplay muted loop playsinline controls poster="./resources/loading-icon.gif" style="width: 85%; border: 1px solid #bbb; border-radius: 10px; margin: 2.0%;">
+            <source src="./resources/Full/Full-fixed.mp4" type="video/mp4">
+          </video>
+          </center>
+      </div>
+      </div>
+    </div>
+  </div>
+</section> -->
+
+
+
+<section class="section">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-2" style="text-align: center; padding-bottom: 10px;">Demo video</h2>
+          <td>
+            <div class="row">
+              <div class="col">
+                  <video autoplay muted loop playsinline controls src="./resources/bridge/locomotion.mp4" width="100%"
+                         style="border-radius:10px; "></video>
+              </div>
+              <div class="col">
+                <video autoplay muted loop playsinline controls src="./resources/bridge/stance.mp4" width="100%"
+                       style="border-radius:10px; "></video>
+              </div>
+            </div>
+            <br>
+          </td>
+        </tr>
+      </div> 
+    </div>
+  </div>
+</section>
+
+
+<!-- <section class="section">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-2" style="text-align: center; padding-bottom: 10px;">Handstand</h2>
+          <td>
+            <div class="row">
+              <div class="col">
+                  <video autoplay muted loop playsinline controls src="./resources/Handstand/Handstand_Downstair_Handhold.mp4" width="100%"
+                         style="border-radius:10px; "></video>
+              </div>
+              <div class="col">
+                <video autoplay muted loop playsinline controls src="./resources/Handstand/Handstand_Grass_Perfect.mp4" width="100%"
+                       style="border-radius:10px; "></video>
+              </div>
+            </div>
+            <br>
+          </td>
+        </tr>
+      </div> 
+    </div>
+  </div>
+</section> -->
+
+<!-- <section class="section">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-2" style="text-align: center; padding-bottom: 10px;">Tilted Ramp</h2>
+        <h5>
+          <center>
+            Fully autonomous without any human teleoperation.
+          </center>
+        </h5>
+        <br>
+          <td>
+            <div class="row">
+              <div class="col">
+                  <video autoplay muted loop playsinline controls src="./resources/Ramp/Ramp1.mp4" width="100%"
+                         style="border-radius:10px; "></video>
+              </div>
+              <div class="col">
+                <video autoplay muted loop playsinline controls src="./resources/Ramp/Ramp2.mp4" height="100%"
+                       style="border-radius:10px; "></video>
+              </div>
+            </div>
+            <br>
+          </td>
+        </tr>
+      </div> 
+    </div>
+  </div>
+</section> -->
+
+<!-- <section class="section">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-2" style="text-align: center; padding-bottom: 10px;">Parkour Course</h2>
+          <td>
+            <div class="row">
+              <div class="col">
+                  <video autoplay muted loop playsinline controls src="./resources/Full/FullParkourStep_Perfect.mp4" width="100%"
+                         style="border-radius:10px; "></video>
+              </div>
+              <div class="col">
+                <video autoplay muted loop playsinline controls src="./resources/Full/FullParkourHandstand.mp4" width="100%"
+                       style="border-radius:10px; "></video>
+              </div>
+            </div>
+            <br>
+          </td>
+        </tr>
+      </div> 
+    </div>
+  </div>
+</section> -->
+
+<!-- <section class="section">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-2" style="text-align: center; padding-bottom: 10px;">Step</h2>
+        <tr>
+          <td>
+            <div class="row">
+              <div class="col">
+                  <video autoplay muted loop playsinline controls src="./resources/Step/Step-wild.mp4" width="100%"
+                         style="border-radius:10px; "></video>
+              </div>
+              <div class="col">
+                <video autoplay muted loop playsinline controls src="./resources/Step/Step-outdoor-3.mp4" width="100%"
+                       style="border-radius:10px; "></video>
+              </div>
+            </div>
+            <br>
+            <div class="row">
+              <div class="col">
+                  <video autoplay muted loop playsinline controls src="./resources/Step/Outdoor_StepOn+Down0.4.mp4" width="100%"
+                         style="border-radius:10px; "></video>
+              </div>
+              <div class="col">
+                <video autoplay muted loop playsinline controls src="./resources/Step/Step0.4-bottom_view.mp4" width="100%"
+                       style="border-radius:10px; "></video>
+              </div>
+            </div>
+            <br>
+            <br>
+          </td>
+        </tr>
+      </div> 
+    </div>
+  </div>
+</section> -->
+
+<!-- <section class="section">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-2" style="text-align: center; padding-bottom: 10px;">Gap</h2>
+          <td>
+            <div class="row">
+              <div class="col">
+                  <video autoplay muted loop playsinline controls src="./resources/Gap/gap0.8.mp4" width="100%"
+                         style="border-radius:10px; "></video>
+              </div>
+              <div class="col">
+                <video autoplay muted loop playsinline controls src="./resources/Gap/Outdoor_Gap0.5.mp4" width="100%"
+                       style="border-radius:10px; "></video>
+              </div>
+            </div>
+            <br>
+          </td>
+        </tr>
+      </div> 
+    </div>
+  </div>
+</section> -->
+
+<!-- <section class="section">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-2" style="text-align: center; padding-bottom: 10px;">Hurdle</h2>
+          <td>
+            <div class="row">
+              <div class="col">
+                  <video autoplay muted loop playsinline controls src="./resources/Hurdle/Hurdle2.mp4" width="100%"
+                         style="border-radius:10px; "></video>
+              </div>
+              <div class="col">
+                <video autoplay muted loop playsinline controls src="./resources/Hurdle/Hurdle1.mp4" width="100%"
+                       style="border-radius:10px; "></video>
+              </div>
+            </div>
+            <br>
+          </td>
+        </tr>
+      </div> 
+    </div>
+  </div>
+</section> -->
+
+<!-- <section class="section">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-2" style="text-align: center; padding-bottom: 10px;">Robustness</h2>
+          <td>
+            <div class="row">
+              <div class="col">
+                  <video autoplay muted loop playsinline controls src="./resources/Robustness/Robustness-1-comp.mp4" width="100%"
+                         style="border-radius:10px; "></video>
+              </div>
+              <div class="col">
+                <video autoplay muted loop playsinline controls src="./resources/Robustness/Robustness-2-comp.mp4" width="100%"
+                       style="border-radius:10px; "></video>
+              </div>
+            </div>
+            <br>
+          </td>
+        </tr>
+      </div> 
+    </div>
+  </div>
+</section> -->
+
+<!-- <section class="section">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-9">
+        <h2 class="title is-2" style="text-align: center;" id="demo">Demo at CoRL 2023</h2>
+        <div style="text-align: center;">
+        <span class="link-block">
+          <a target="_blank" href="https://x.com/xuxin_cheng/status/1725217484918440287?s=20"
+            class="external-link button is-normal is-rounded is-dark">
+            <span class="icon">
+                <i class="fab fa-twitter"></i>
+            </span>
+            <span>Tweet</span>
+          </a>
+        </span>
+        </div>
+          <center>
+          <video controls autoplay muted loop playsinline poster="./resources/loading-icon.gif" style="width: 60%; border: 1px solid #bbb; border-radius: 10px; margin: 2.0%;">
+            <source src="./resources/demo/demo.mp4" type="video/mp4">
+          </video><br>
+          Uncut 2 mins clip of our robot nonstop climbing, leaping across gaps, and jumping down from boxes.
+          </center>
+      </div>
+      </div>
+    </div>
+  </div>
+</section> -->
+
+<!-- <section class="section">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-2" style="text-align: center; padding-bottom: 10px;">Baselines</h2>
+        <tr>
+          <td>
+            <div class="row">
+              <div class="columns is-centered">
+                <div class="col">
+                  <h2 class="subtitle">
+                    Failure case from <a href="https://vision-locomotion.github.io/">Vision locomotion</a> project. It falls downstair. 
+                  </h2>
+                  <video autoplay muted loop playsinline controls src="./resources/Failure/failure-curb-compressed.mp4" width="100%"
+                        style="border-radius:10px; "></video>
+                </div>
+                <div class="col">
+                    <h2 class="subtitle">
+                      Without clearance reward, the robot easily touches the edge and fails on large gap terrain.
+                    </h2>
+                    <video autoplay muted loop playsinline controls src="./resources/Failure/Gap.mp4" width="100%"
+                          style="border-radius:10px; "></video>
+                </div>
+                <div class="col">
+                  <h2 class="subtitle">
+                    Without direction distillation, it is hard to control the robot via joystick on the ramp terrain.
+                  </h2>
+                  <video autoplay muted loop playsinline controls src="./resources/Failure/Ramp.mp4" width="100%"
+                        style="border-radius:10px; "></video>
+                </div>
+              </div>
+            </div>
+            <br>
+          </td>
+        </tr>
+      </div> 
+    </div>
+  </div>
+</section> -->
+
+
+<!-- <section class="section">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-9">
+        <h2 class="title is-2" style="text-align: center;">Method</h2>
+          <center>
+          <video autoplay muted loop playsinline poster="./resources/loading-icon.gif" style="width: 100%; border: 1px solid #bbb; border-radius: 10px; margin: 2.0%;">
+            <source src="./resources/Full/method.mp4" type="video/mp4">
+          </video>
+          </center>
+      </div>
+      </div>
+    </div>
+  </div>
+</section> -->
+
+
+
+
+<section class="section">
+  <div class="container">
+    <h2 class="title is-2" style="text-align: center;" id="press-coverage">Bridgedp Robotics believes that universal robots will eventually bring about great changes to human civilization</h2>
+    <br>
+    <div class="columns is-centered">
+      <!-- <div class="column is-centered has-text-centered">
+        <a target="_blank" href="https://spectrum.ieee.org/video-friday-strandbeest-2">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/7/7d/IEEE-Spectrum.svg" width="90%"></img>
+        </a>
+      </div> -->
+      <!-- <div class="column is-centered has-text-centered">
+        <a target="_blank" href="https://www.cs.cmu.edu/news/2023/robot-parkour">
+          <img src="https://www.cmu.edu/common/standard-v6/images/cmu-wordmark.png" width="90%"></img>
+        </a>
+      </div> -->
+      <div class="column is-centered has-text-centered">
+        <a target="_blank" href="https://www.bridgedp.com/">
+          <h2>contact us</h2>
+        </a>
+      </div>
+      <!-- <div class="column is-centered has-text-centered">
+        <a target="_blank" href="https://mp.weixin.qq.com/s/j1U-EI8CBcdKTEtKEIjw6Q">
+          <h2>量子位</h2>
+        </a>
+      </div>
+      <div class="column is-centered has-text-centered">
+        <a target="_blank" href="https://news.ycombinator.com/item?id=37812255">
+        <span class="icon">
+          <i class="fa-brands fa-square-hacker-news"></i>
+        </span>
+        <h2>Hacker News</h2>
+        </a>
+      </div> -->
+  </div>
+</section>
+
+<!-- <section class="section" id="BibTeX">
+  <div class="container content">
+    <h2 class="titile">BibTeX</h2>
+    <pre><code>
+@article{cheng2023parkour,
+title={Extreme Parkour with Legged Robots},
+author={Cheng, Xuxin and Shi, Kexin and Agarwal, Ananye and Pathak, Deepak},
+journal={arXiv preprint arXiv:2309.14341},
+year={2023}
+}
+</code></pre>
+  </div>
+</section> -->
+
+
+</body>
+
+<script>
+  var mainLoopId = setInterval(function(){
+        $('video').not('#teaser').each(function(){
+      if ($(this).is(":in-viewport")) {
+          $(this)[0].play();
+      } else {
+          $(this)[0].pause();
+      }
+      })
+    },200);
+</script>
+
+</html>
