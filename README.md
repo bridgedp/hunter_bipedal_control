@@ -1,6 +1,6 @@
 ## hunter_bipedal_control
 
-An open source bipedal robot control framework, based on non-linear MPC and WBC, tailered for EC-hunter80-v01 bipedal robot. For more information refer to the project's [Page](https://bridgedp.github.io/hunter_bipedal_control)
+An open source bipedal robot control framework, based on non-linear MPC and WBC, tailered for EC-hunter80-v01 bipedal robot. For more information refer to the project's [Page](https://bridgedp.github.io/hunter_bipedal_control). [More detailed hardware information about hunter and bipedal robot communication group](https://f0exxg5fp6u.feishu.cn/docx/D1aQdM337ovKYnxRyJMcGibunoh) 
 
 ## Installation
 
