@@ -29,6 +29,8 @@ catkin build
 
 ## Quick Start
 
+<iframe src="//player.bilibili.com/player.html?aid=1201220472&bvid=BV1yF4m157F6&cid=1453184136&p=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
+
 ### Simulation
 
 1. Run the simulation and load the controller:
