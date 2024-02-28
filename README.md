@@ -29,7 +29,7 @@ catkin build
 
 ## Quick Start
 
-<iframe src="//player.bilibili.com/player.html?aid=1201220472&bvid=BV1yF4m157F6&cid=1453184136&p=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
+[![](./docs/demovideo.png)](https://www.bilibili.com/video/BV1yF4m157F6/?share_source=copy_web&vd_source=40bb9ce8f091be0c579acdb44d366a2d)
 
 ### Simulation
 
