@@ -153,6 +153,29 @@ if __name__ == '__main__':
     thread.join()
 ```
 
+## Running on Hardware Headless
+
+1. Plug a monitor into the onboard mini pc. Login to a local network and double change the computer name and user name.
+
+2. Power the mini PC from the onboard battery it should automatically connect to the local network.
+
+3. Open a terminal, power shell, or any ternimal emulator (PuTTY) from another PC on the same network.
+
+```bash
+ssh <username@hostname>
+```
+
+```bash
+cd Desktop/hunter_bipedal_control/ 
+sudo su
+source devel/setup.bash
+roslaunch legged_controllers one_start_real.launch rviz:=false
+```
+
+4. Hold L1 and **slowly** push L2 to the end to increase ***kp_position***.
+
+5. The rest of the steps are the same as controlling in simulation. 
+
 ## Reference
 
 ### Code Reference
