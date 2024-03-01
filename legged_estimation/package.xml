@@ -14,5 +14,6 @@
     <depend>realtime_tools</depend>
     <depend>tf2_ros</depend>
     <depend>legged_interface</depend>
+    <depend>std_msgs</depend>
 
 </package>

@@ -65,6 +65,8 @@ KalmanFilterEstimate::KalmanFilterEstimate(PinocchioInterface pinocchioInterface
   world2odom_.setRotation(tf2::Quaternion::getIdentity());
   sub_ = ros::NodeHandle().subscribe<nav_msgs::Odometry>("/tracking_camera/odom/sample", 10,
                                                          &KalmanFilterEstimate::callback, this);
+  subResetEst_ = ros::NodeHandle().subscribe<std_msgs::Float32>("/reset_estimation", 1,
+                                                               &KalmanFilterEstimate::resetEstimationCallback, this);        
 }
 
 vector_t KalmanFilterEstimate::update(const ros::Time& time, const ros::Duration& period)
@@ -236,6 +238,43 @@ void KalmanFilterEstimate::callback(const nav_msgs::Odometry::ConstPtr& msg)
 {
   buffer_.writeFromNonRT(*msg);
   topicUpdated_ = true;
+}
+void KalmanFilterEstimate::resetEstimationCallback(const std_msgs::Float32::ConstPtr& msg)
+{
+    xHat_.setZero();
+  ps_.setZero();
+  vs_.setZero();
+  a_.setZero();
+  a_.block(0, 0, 3, 3) = Eigen::Matrix<scalar_t, 3, 3>::Identity();
+  a_.block(3, 3, 3, 3) = Eigen::Matrix<scalar_t, 3, 3>::Identity();
+  a_.block(6, 6, 12, 12) = Eigen::Matrix<scalar_t, 12, 12>::Identity();
+  b_.setZero();
+
+  Eigen::Matrix<scalar_t, Eigen::Dynamic, Eigen::Dynamic> c1(3, 6);
+  c1 << Eigen::Matrix<scalar_t, 3, 3>::Identity(), Eigen::Matrix<scalar_t, 3, 3>::Zero();
+  Eigen::Matrix<scalar_t, Eigen::Dynamic, Eigen::Dynamic> c2(3, 6);
+  c2 << Eigen::Matrix<scalar_t, 3, 3>::Zero(), Eigen::Matrix<scalar_t, 3, 3>::Identity();
+  c_.setZero();
+  c_.block(0, 0, 3, 6) = c1;
+  c_.block(3, 0, 3, 6) = c1;
+  c_.block(6, 0, 3, 6) = c1;
+  c_.block(9, 0, 3, 6) = c1;
+  c_.block(0, 6, 12, 12) = -Eigen::Matrix<scalar_t, 12, 12>::Identity();
+  c_.block(12, 0, 3, 6) = c2;
+  c_.block(15, 0, 3, 6) = c2;
+  c_.block(18, 0, 3, 6) = c2;
+  c_.block(21, 0, 3, 6) = c2;
+  c_(27, 17) = 1.0;
+  c_(26, 14) = 1.0;
+  c_(25, 11) = 1.0;
+  c_(24, 8) = 1.0;
+  p_.setIdentity();
+  p_ = 100. * p_;
+  q_.setIdentity();
+  r_.setIdentity();
+  feetHeights_.setZero(info_.numThreeDofContacts);
+  world2odom_.setRotation(tf2::Quaternion::getIdentity());
+  
 }
 
 nav_msgs::Odometry KalmanFilterEstimate::getOdomMsg()

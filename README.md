@@ -33,10 +33,15 @@ catkin build
 
 ### Simulation
 
-1. Run the simulation and load the controller:
+1. Run the gazebo simulation and load the controller:
 
 ```shell
 roslaunch legged_controllers one_start_gazebo.launch
+```
+
+2. Run the mujoco simulation and load the controller:
+```shell
+roslaunch legged_controllers one_start_mujoco.launch
 ```
 
 ### Robot hardware
@@ -47,7 +52,18 @@ roslaunch legged_controllers one_start_gazebo.launch
 roslaunch legged_controllers one_start_real.launch
 ```
 
-***Notes:*** After the user starts the simulation, the robot falls down in Gazebo. The user needs to press ***Ctrl+Shift+R*** to make the robot stand up. Then, dynamic parameter adjustment is used in the code, and the user needs to set ***kpposition=100***, ***kdposition=3***.
+***Notes:***  
+    After the user starts the simulation, the robot falls down in Gazebo OR Mujoco. 
+1. Gazebo
+    First the user needs to set ***kp_position=100***, ***kd_position=3*** in rqt (need refresh) and reset the simulation by pressing ***Ctrl+Shift+R*** to make the robot stand up.
+2. Mujoco
+    First the user needs to set ***kp_position=100***, ***kd_position=3*** in rqt (need refresh) and reset the simulation by clicking ***Reload*** to make the robot stand up.
+
+    Then, send the following commands:
+    ```bash
+    rostopic pub --once /reset_estimation std_msgs/Float32 "data: 1.23"
+    ```
+    This command will reset the state estimation information because ***Reload*** brings mutation effects to the state estimation.
 
 ## Gamepad Control
 
@@ -73,6 +89,7 @@ The following is a schematic diagram of the handle operation:
 
 Compilation: Only compile the following packages (and their dependencies), there's no need to compile the entire OCS2.
 
+1. Gazebo Simulation
 ```bash
 catkin build legged_controllers legged_hunter_description legged_gazebo
 ```
@@ -151,6 +168,23 @@ if __name__ == '__main__':
     listener.join()
     
     thread.join()
+```
+2. Mujoco Simulation
+```bash
+catkin build legged_controllers legged_hunter_description legged_mujoco lcm_msg mujoco
+```
+Execution: If you don't have a gamepad, you need to send the startup commands in order.
+
+First, set ***kp_position=100*** ***kd_position=3***  in rqt and reset the simulation by clicking ***Reload*** to make the robot stand up. Then, send the following commands:
+
+```bash
+rostopic pub --once /reset_estimation std_msgs/Float32 "data: 1.23"
+rostopic pub --once /load_controller std_msgs/Float32 "data: 1.23"
+rostopic pub --once /set_walk std_msgs/Float32 "data: 1.23"
+```
+and 
+```bash
+rosrun rqt_robot_steering rqt_robot_steering 
 ```
 
 ## Reference

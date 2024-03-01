@@ -13,6 +13,7 @@ at www.bridgedp.com.
 
 #include "legged_estimation/StateEstimateBase.h"
 
+#include "std_msgs/Float32.h"
 #include <ocs2_centroidal_model/CentroidalModelPinocchioMapping.h>
 #include <ocs2_pinocchio_interface/PinocchioEndEffectorKinematics.h>
 
@@ -39,6 +40,7 @@ protected:
   void updateFromTopic();
 
   void callback(const nav_msgs::Odometry::ConstPtr& msg);
+  void resetEstimationCallback(const std_msgs::Float32::ConstPtr& msg);
 
   nav_msgs::Odometry getOdomMsg();
 
@@ -66,6 +68,8 @@ private:
 
   // Topic
   ros::Subscriber sub_;
+  ros::Subscriber subResetEst_;
+
   realtime_tools::RealtimeBuffer<nav_msgs::Odometry> buffer_;
   tf2_ros::Buffer tfBuffer_;
   tf2_ros::TransformListener tfListener_;

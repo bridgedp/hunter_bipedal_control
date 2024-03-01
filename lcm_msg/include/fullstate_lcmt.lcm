@@ -1,0 +1,17 @@
+struct full_state_t
+{
+    int64_t timestamp;
+	
+    double quaternion[4];
+    double gyroscope[3];
+    double accelerometer[3];
+
+    double position[3];
+    double velocity[3];
+
+    double joint_pos[12];
+    double joint_vel[12];
+    double joint_torque[12];
+
+    double foot_force[4];
+}
