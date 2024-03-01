@@ -1,0 +1,11 @@
+struct low_cmd_t
+{
+    int64_t timestamp;
+    
+    double joint_pos[10];
+    double joint_vel[10];
+    double joint_torque[10];
+    double ff_tau[10];
+    double kp[10];
+    double kd[10];
+}

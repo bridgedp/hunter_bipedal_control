@@ -11,6 +11,7 @@ find_package(catkin REQUIRED
         realtime_tools
         tf2_ros
         legged_interface
+        std_msgs
         )
 
 find_package(PkgConfig REQUIRED)
@@ -27,6 +28,7 @@ catkin_package(
         realtime_tools
         tf2_ros
         legged_interface
+        std_msgs
 )
 
 ###########

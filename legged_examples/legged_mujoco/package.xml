@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package format="2">
+    <name>legged_mujoco</name>
+    <version>0.0.0</version>
+    <description>ROS control warped interface for go1 mujoco</description>
+    <maintainer email="linzuen753951@gmail.com">lze</maintainer>
+
+    <license>BSD</license>
+    <author email="linzuen753951@gmail.com">lze</author>
+
+    <buildtool_depend>catkin</buildtool_depend>
+
+    <build_depend>cmake_clang_tools</build_depend>
+    <depend>roscpp</depend>
+    <depend>legged_hw</depend>
+    <!-- <depend>dynamic_reconfigure</depend> -->
+    <depend>lcm_msg</depend>
+</package>

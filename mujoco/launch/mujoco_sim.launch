@@ -1,0 +1,9 @@
+<launch>
+    <!-- <arg name="robot_type" default="go1" doc="Robot type: [a1, aliengo, go1, laikago]"/>
+     -->
+    <arg name="legged_robot_scene" default="$(find mujoco)/model/hunter/hunter_scene.xml"/>
+
+    <node name="mujoco" pkg="mujoco" type="mujoco_simulate" respawn="false"
+        clear_params="true" args="$(arg legged_robot_scene)"/>
+</launch>
+ 
