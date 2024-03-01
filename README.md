@@ -155,7 +155,7 @@ if __name__ == '__main__':
 
 ## Running on Hardware Headless
 
-1. Plug a monitor into the onboard mini pc. Login to a local network and double change the computer name and user name.
+1. Plug a monitor into the onboard mini pc. Login to a local network and double check the computer name and user name.
 
 2. Power the mini PC from the onboard battery it should automatically connect to the local network.
 
