@@ -12,6 +12,8 @@ An open source bipedal robot control framework, based on non-linear MPC and WBC,
 
 - [ROS1-Noetic](http://wiki.ros.org/noetic)
 
+- [LCM](https://github.com/lcm-proj/lcm) (Only required when using mujoco simulation)
+
 ### Clone and Build
 
 ```shell
@@ -24,12 +26,21 @@ git clone https://github.com/bridgedp/hunter_bipedal_control.git
 cd <catkin_ws_name>
 catkin init
 catkin config -DCMAKE_BUILD_TYPE=RelWithDebInfo
-catkin build
+
+# for different use build 
+# 1. gazebo simulation 
+catkin build legged_controllers legged_hunter_description legged_gazebo
+
+# 2. mujoco simulation
+catkin build legged_controllers legged_hunter_description legged_mujoco lcm_msg mujoco
 ```
 
 ## Quick Start
-
+- Gazebo Simulation 
 [![](./docs/demovideo.png)](https://www.bilibili.com/video/BV1yF4m157F6/?share_source=copy_web&vd_source=40bb9ce8f091be0c579acdb44d366a2d)
+
+- Mujoco Simulation
+![](./docs/mujoco_demo.png)
 
 ### Simulation
 
